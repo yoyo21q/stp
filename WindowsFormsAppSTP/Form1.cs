@@ -20,7 +20,7 @@ namespace WindowsFormsAppSTP
         public Form1()
         {
             InitializeComponent();
-         textBox1_Leave(null,null); textBox2_Leave(null, null); textBox3_Leave(null, null); textBox4_Leave(null, null);
+            textBox1_Leave(null,null); textBox2_Leave(null, null); textBox3_Leave(null, null); textBox4_Leave(null, null);
         
         }
         private void textBox1_Enter(object sender, EventArgs e)
