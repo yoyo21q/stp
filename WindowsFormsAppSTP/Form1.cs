@@ -130,6 +130,7 @@ namespace WindowsFormsAppSTP
                                                     await fayl.WriteLineAsync($"{textBox2.Text};");
                                                     await fayl.WriteLineAsync($"{textBox4.Text};");
                                                 }
+                                                using (StreamWriter fayl = new StreamWriter(currentPath + "/Users" + $"/{textBox1.Text}/" + $"/{textBox1.Text}_Data.txt")) { }   
                                                 user_name = textBox1.Text;
                                                 user_password = textBox2.Text;
                                                 user_mail = textBox4.Text;
@@ -179,11 +180,11 @@ namespace WindowsFormsAppSTP
                 MessageBox.Show("Поле пользователь содержит пробел!");
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
-
+            Form2 fr2 = new Form2();
+            fr2.Show();
+            Hide();
         }
-
     }
 }
