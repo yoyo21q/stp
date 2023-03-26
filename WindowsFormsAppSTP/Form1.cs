@@ -46,6 +46,7 @@ namespace WindowsFormsAppSTP
             {
                 textBox2.Clear();
                 textBox2.ForeColor = Color.Black;
+                textBox2.UseSystemPasswordChar = true;
             }
         }
 
@@ -55,6 +56,7 @@ namespace WindowsFormsAppSTP
             {
                 textBox2.Text = "Пароль";
                 textBox2.ForeColor = Color.Gray;
+                textBox2.UseSystemPasswordChar = false;
             }
         }
         private void textBox3_Enter(object sender, EventArgs e)
@@ -63,6 +65,7 @@ namespace WindowsFormsAppSTP
             {
                 textBox3.Clear();
                 textBox3.ForeColor = Color.Black;
+                textBox3.UseSystemPasswordChar = true;
             }
         }
 
@@ -72,6 +75,7 @@ namespace WindowsFormsAppSTP
             {
                 textBox3.Text = "Повторите пароль";
                 textBox3.ForeColor = Color.Gray;
+                textBox3.UseSystemPasswordChar = false;
             }
         }
         private void textBox4_Enter(object sender, EventArgs e)
@@ -94,23 +98,86 @@ namespace WindowsFormsAppSTP
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            string currentPath = Directory.GetCurrentDirectory();
-            if (!Directory.Exists(Path.Combine(currentPath, "Users")))
+            if(!textBox1.Text.Contains(" ")) 
             {
-                Directory.CreateDirectory(Path.Combine(currentPath, "Users"));
+                if (textBox1.Text != null) 
+                {
+                    if (!textBox2.Text.Contains(" "))
+                    {
+                        if (textBox2.Text != null)
+                        {
+                            if (!textBox3.Text.Contains(" "))
+                            {
+                                if (textBox3.Text != null)
+                                {
+                                    if (textBox3.Text == textBox2.Text) 
+                                    {
+                                        if (!textBox4.Text.Contains(" "))
+                                        {
+                                            if (textBox4.Text != null)
+                                            {
+                                                string currentPath = Directory.GetCurrentDirectory();
+                                                if (!Directory.Exists(Path.Combine(currentPath, "Users")))
+                                                {
+                                                    Directory.CreateDirectory(Path.Combine(currentPath, "Users"));
+                                                }
+                                                if (!Directory.Exists(Path.Combine(currentPath + "/Users", $"{textBox1.Text}")))
+                                                {
+                                                    Directory.CreateDirectory(Path.Combine(currentPath + "/Users", $"{textBox1.Text}"));
+                                                }
+                                                using (StreamWriter fayl = new StreamWriter(currentPath + "/Users" + $"/{textBox1.Text}/" + $"/{textBox1.Text}.txt"))
+                                                {
+                                                    await fayl.WriteLineAsync($"{textBox2.Text};");
+                                                    await fayl.WriteLineAsync($"{textBox4.Text};");
+                                                }
+                                                user_name = textBox1.Text;
+                                                user_password = textBox2.Text;
+                                                user_mail = textBox4.Text;
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Поле почта пустое!");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Поле пароль содержит пробел!");
+                                        }
+                                    } 
+                                    else 
+                                    {
+                                        MessageBox.Show("Пароли не совпадают!");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Поле повторное введение пароля пустое!");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Поле повторное введение пароля содержит пробел!");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Поле пароль пустое!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Поле пароль содержит пробел!");
+                    }
+                }
+                else 
+                {
+                    MessageBox.Show("Поле пользователь пустое!");
+                }
             }
-            if (!Directory.Exists(Path.Combine(currentPath+ "/Users", $"{textBox1.Text}")))
+            else 
             {
-                Directory.CreateDirectory(Path.Combine(currentPath+"/Users", $"{textBox1.Text}"));
+                MessageBox.Show("Поле пользователь содержит пробел!");
             }
-            using (StreamWriter fayl = new StreamWriter(currentPath + "/Users" + $"/{textBox1.Text}/" + $"/{textBox1.Text}.txt"))
-            {
-                await fayl.WriteLineAsync($"{textBox2.Text};");
-                await fayl.WriteLineAsync($"{textBox4.Text};");
-            }
-            user_name = textBox1.Text;
-            user_password = textBox2.Text;
-            user_mail = textBox4.Text;
         }
 
         private void label1_Click(object sender, EventArgs e)
