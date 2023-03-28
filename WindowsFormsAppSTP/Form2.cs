@@ -16,21 +16,24 @@ namespace WindowsFormsAppSTP
         public Form2()
         {
             InitializeComponent();
-            textBox1_Leave(null, null); textBox2_Leave(null, null);
+            textBox1_Leave(null, null); textBox2_Leave(null, null);// Визуальная часть текст боксов
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)// Нажатие на кнопку входа
         {
-            string currentPath = Directory.GetCurrentDirectory();
-            if (Directory.Exists(Path.Combine(currentPath, "Users")))
+            string currentPath = Directory.GetCurrentDirectory();// Текущая директория программы
+            if (Directory.Exists(Path.Combine(currentPath, "Users")))// Проверка существования директории user
             {
-                if (Directory.Exists(Path.Combine(currentPath + "/Users/"+ $"{textBox1.Text}")))
+                if (Directory.Exists(Path.Combine(currentPath + "/Users/"+ $"{textBox1.Text}")))// Проверка существования директории имя пользователя
                 {
-                    using (StreamReader sr = File.OpenText(currentPath + "/Users" + $"/{textBox1.Text}/" + $"/{textBox1.Text}.txt"))
+                    using (StreamReader sr = File.OpenText(currentPath + "/Users" + $"/{textBox1.Text}/" + $"/{textBox1.Text}.txt"))// Открытие файла имени пользователя
                     {
-                        string password;
-                        password = sr.ReadLine();
-                        MessageBox.Show($"{password}");
+                        string password;// пароль
+                        password = sr.ReadLine();// считываем пароль
+                        if (textBox2.Text == password) // Если поле текст бокс == пароль
+                        {
+                            MessageBox.Show("Вход выполнен!");
+                        }
                     }
                 }
             }
@@ -77,6 +80,11 @@ namespace WindowsFormsAppSTP
             Form1 fr1 = new Form1();
             fr1.Show();
             Hide();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
