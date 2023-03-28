@@ -33,6 +33,9 @@ namespace WindowsFormsAppSTP
                         if (textBox2.Text == password) // Если поле текст бокс == пароль
                         {
                             MessageBox.Show("Вход выполнен!");
+                            Form3 fr3 = new Form3();
+                            fr3.Show();
+                            Hide();
                         }
                     }
                 }
