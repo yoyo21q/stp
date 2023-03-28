@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,19 @@ namespace WindowsFormsAppSTP
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            string currentPath = Directory.GetCurrentDirectory();
+            if (Directory.Exists(Path.Combine(currentPath, "Users")))
+            {
+                if (Directory.Exists(Path.Combine(currentPath + "/Users/"+ $"{textBox1.Text}")))
+                {
+                    using (StreamReader sr = File.OpenText(currentPath + "/Users" + $"/{textBox1.Text}/" + $"/{textBox1.Text}.txt"))
+                    {
+                        string password;
+                        password = sr.ReadLine();
+                        MessageBox.Show($"{password}");
+                    }
+                }
+            }
         }
         private void textBox1_Enter(object sender, EventArgs e)
         {
