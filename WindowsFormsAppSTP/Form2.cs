@@ -21,24 +21,53 @@ namespace WindowsFormsAppSTP
 
         private void button1_Click(object sender, EventArgs e)// Нажатие на кнопку входа
         {
-            string currentPath = Directory.GetCurrentDirectory();// Текущая директория программы
-            if (Directory.Exists(Path.Combine(currentPath, "Users")))// Проверка существования директории user
+            if(textBox1.Text!=null)// Проверка присутствия имени пользователя
             {
-                if (Directory.Exists(Path.Combine(currentPath + "/Users/"+ $"{textBox1.Text}")))// Проверка существования директории имя пользователя
+                if (!textBox1.Text.Contains(" "))// Проверка содержания имени пользователя на пробел
                 {
-                    using (StreamReader sr = File.OpenText(currentPath + "/Users" + $"/{textBox1.Text}/" + $"/{textBox1.Text}.txt"))// Открытие файла имени пользователя
+                    if (textBox2.Text != null)// Проверка присутствия пароля
                     {
-                        string password;// пароль
-                        password = sr.ReadLine();// считываем пароль
-                        if (textBox2.Text == password) // Если поле текст бокс == пароль
+                        if (!textBox2.Text.Contains(" "))// Проверка пароля на содержание пробелов
                         {
-                            MessageBox.Show("Вход выполнен!");
-                            Form3 fr3 = new Form3();
-                            fr3.Show();
-                            Hide();
+                            string currentPath = Directory.GetCurrentDirectory();// Текущая директория программы
+                            if (Directory.Exists(Path.Combine(currentPath, "Users")))// Проверка существования директории user
+                            {
+                                if (Directory.Exists(Path.Combine(currentPath + "/Users/" + $"{textBox1.Text}")))// Проверка существования директории имя пользователя
+                                {
+                                    using (StreamReader sr = File.OpenText(currentPath + "/Users" + $"/{textBox1.Text}/" + $"/{textBox1.Text}.txt"))// Открытие файла имени пользователя
+                                    {
+                                        string password;// пароль
+                                        password = sr.ReadLine();// считываем пароль
+                                        if (textBox2.Text == password) // Если поле текст бокс == пароль
+                                        {
+
+                                            MessageBox.Show("Вход выполнен!");
+                                            Form3 fr3 = new Form3(textBox1.Text);
+                                            fr3.Show();
+                                            Hide();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Пароль содержит пробелы!");
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("Пароль пустой!");
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Имя пользователя содержит пробелы!");
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Имя пользователя пустое!");
             }
         }
         private void textBox1_Enter(object sender, EventArgs e)

@@ -15,8 +15,6 @@ namespace WindowsFormsAppSTP
     public partial class Form1 : Form
     {
         public string user_name;
-        public string user_password;
-        public string user_mail;
         public Form1()
         {
             InitializeComponent();
@@ -129,11 +127,10 @@ namespace WindowsFormsAppSTP
                                                 {
                                                     await fayl.WriteLineAsync($"{textBox2.Text}");// Вводим пароль
                                                     await fayl.WriteLineAsync($"{textBox4.Text}");// Вводим почту
+                                                    await fayl.WriteLineAsync($"0");// Вводим колличество заметок
                                                 }
                                                 //using (StreamWriter fayl = new StreamWriter(currentPath + "/Users" + $"/{textBox1.Text}/" + $"/{textBox1.Text}_Data.txt")) { }   
                                                 user_name = textBox1.Text;
-                                                user_password = textBox2.Text;
-                                                user_mail = textBox4.Text;
                                             }
                                             else// Не прошёл роверку
                                             {
