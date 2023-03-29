@@ -19,13 +19,14 @@ namespace WindowsFormsAppSTP
             InitializeComponent();
             user_name = user_name_local;
         }
-        public void ComboBox_Load()
+        public void ComboBox_Load(object sender, EventArgs e)
         {
+            comboBox1.Items.Clear();
             string currentPath = Directory.GetCurrentDirectory();// Берём координаты текущей директории
             int sch = Convert.ToInt32(File.ReadLines(currentPath + "/Users" + $"/{user_name}/" + $"/{user_name}.txt").Skip(2).First());// Берём количество существующих файлов/нумерация
             for (int i = 0; i < Convert.ToInt32(sch); i++)
             {
-                Name = File.ReadLines(currentPath + "/Users" + $"/{user_name}/" + $"/{user_name}_Data{i}.txt").Skip(0).First();
+                Name = File.ReadLines(currentPath + "/Users" + $"/{user_name}/" + $"/{user_name}_Data{i}.txt").First();
                 comboBox1.Items.Add($"{Name}");
             }
         }
@@ -34,11 +35,6 @@ namespace WindowsFormsAppSTP
             Form5 fr4 = new Form5();
             fr4.user_name = user_name;// Переносим данные о имени пользователя в другую форму/форму добавления заметок
             fr4.Show();
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
