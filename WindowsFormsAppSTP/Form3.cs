@@ -28,8 +28,8 @@ namespace WindowsFormsAppSTP
             {
                 if (File.Exists(Path.Combine(currentPath + "/Users" + $"/{user_name}/" + $"/{user_name}_Data{i}.txt"))) // Если файл с заметкой n существует
                 {
-                    Name = File.ReadLines(currentPath + "/Users" + $"/{user_name}/" + $"/{user_name}_Data{i}.txt").First();
-                    comboBox1.Items.Add($"{Name}");
+                    Name = File.ReadLines(currentPath + "/Users" + $"/{user_name}/" + $"/{user_name}_Data{i}.txt").First();// Читаем название заметки
+                    comboBox1.Items.Add($"{Name}");// Добавляем в комбо бокс
                 }
                 else// Если файл с заметкой не существует
                 {
