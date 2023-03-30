@@ -24,15 +24,22 @@ namespace WindowsFormsAppSTP
             comboBox1.Items.Clear();
             string currentPath = Directory.GetCurrentDirectory();// Берём координаты текущей директории
             int sch = Convert.ToInt32(File.ReadLines(currentPath + "/Users" + $"/{user_name}/" + $"/{user_name}.txt").Skip(2).First());// Берём количество существующих файлов/нумерация
-            for (int i = 0; i < Convert.ToInt32(sch); i++)
+            for (int i = 0; i <sch; i++)
             {
-                Name = File.ReadLines(currentPath + "/Users" + $"/{user_name}/" + $"/{user_name}_Data{i}.txt").First();
-                comboBox1.Items.Add($"{Name}");
+                if (File.Exists(Path.Combine(currentPath + "/Users" + $"/{user_name}/" + $"/{user_name}_Data{i}.txt"))) // Если файл с заметкой n существует
+                {
+                    Name = File.ReadLines(currentPath + "/Users" + $"/{user_name}/" + $"/{user_name}_Data{i}.txt").First();
+                    comboBox1.Items.Add($"{Name}");
+                }
+                else// Если файл с заметкой не существует
+                {
+
+                }
             }
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            Form5 fr4 = new Form5();
+            Form5 fr4 = new Form5();// Новая форма заметки
             fr4.user_name = user_name;// Переносим данные о имени пользователя в другую форму/форму добавления заметок
             fr4.Show();
         }
