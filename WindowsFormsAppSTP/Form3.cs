@@ -36,5 +36,12 @@ namespace WindowsFormsAppSTP
             fr4.user_name = user_name;// Переносим данные о имени пользователя в другую форму/форму добавления заметок
             fr4.Show();
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string currentPath = Directory.GetCurrentDirectory();// Берём координаты текущей директории
+            string Value = File.ReadLines(currentPath + "/Users" + $"/{user_name}/" + $"/{user_name}_Data{comboBox1.SelectedIndex}.txt").Skip(1).First();// Берём текст заметки
+            textBox1.Text = Value;// Записываем текст в текст бокс
+        }
     }
 }
