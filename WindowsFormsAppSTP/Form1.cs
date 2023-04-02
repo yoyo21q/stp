@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Net;
+using System.Net.Sockets;
 
 namespace WindowsFormsAppSTP
 {
@@ -19,7 +21,6 @@ namespace WindowsFormsAppSTP
         {
             InitializeComponent();
             textBox1_Leave(null,null); textBox2_Leave(null, null); textBox3_Leave(null, null); textBox4_Leave(null, null); // Визуальная составляющая текстбоксов
-        
         }
         private void textBox1_Enter(object sender, EventArgs e)// Вход в 1й текст бокс
         {
