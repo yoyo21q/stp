@@ -20,7 +20,7 @@ namespace WindowsFormsAppSTP
         public Form1()
         {
             InitializeComponent();
-            textBox1_Leave(null,null); textBox2_Leave(null, null); textBox3_Leave(null, null); textBox4_Leave(null, null); // Визуальная составляющая текстбоксов
+            textBox1_Leave(null, null); textBox2_Leave(null, null); textBox3_Leave(null, null); textBox4_Leave(null, null); // Визуальная составляющая текстбоксов
         }
         private void textBox1_Enter(object sender, EventArgs e)// Вход в 1й текст бокс
         {
@@ -95,9 +95,10 @@ namespace WindowsFormsAppSTP
             }
         }
 
-        private async void button1_Click(object sender, EventArgs e)// Нажатие на кнопку регестрации
+
+        private async void bunifuButton1_Click(object sender, EventArgs e)
         {
-            if(!textBox1.Text.Contains(" "))// Проверка
+            if (!textBox1.Text.Contains(" "))// Проверка
             {
                 if (textBox1.Text != null)// Проверка
                 {
@@ -177,12 +178,8 @@ namespace WindowsFormsAppSTP
             {
                 MessageBox.Show("Поле пользователь содержит пробел!");
             }
+
         }
-        private void label2_Click(object sender, EventArgs e)// Переход на вкладку входа
-        {
-            Form2 fr2 = new Form2();// Включение второй формы/входа
-            fr2.Show();// Открытие второй
-            Hide();// Скрытие основной
-        }
+
     }
 }
